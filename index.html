@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>corn</title>
+</head>
+<body>
+  
+<style>
+  body {overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+  .corn {position: absolute; left: 100px; top: 100px;}
+
+</style>
+<script>
+/*
+function rand(m, n) {
+  return Math.round(Math.random() * ( n - m) + m)
+}
+
+var corns = []
+document.onkeydown = document.onclick = function(e) {
+  var div = document.createElement('div')
+  // 
+  div.innerHTML = '<img src="img/corn-'+(location.hash.substring(1) == 'gold' ? 'gold' : 'iron')+'.png" alt="" class="corn">'
+  var corn = div.children[0]
+  var x = e.type == 'click' ? e.clientX - 80 : rand(0, window.innerWidth - 60)
+  var y = e.type == 'click' ? e.clientY - 80 : rand(0, window.innerHeight - 60)
+  document.body.appendChild(corn)
+  var speedX = 0
+  var speedY = 0
+  while (Math.abs(speedX) < 2) {
+    speedX = rand(-5, 5)
+  }
+  while (Math.abs(speedY) < 5) {
+    speedY = rand(-10, 10)
+  }
+  corn.style.left = x + 'px'
+  corn.style.top = y + 'px'
+  corns.push({
+    x: x,
+    y: y,
+    speedX: speedX,
+    speedY: speedY,
+    corn: corn
+  })
+}
+
+setInterval(function() {
+  corns.forEach(function(v, idx) {
+    v.speedY += 1
+    v.x += v.speedX
+    v.y += v.speedY
+    if (v.x < 0) {
+      v.x = 0
+      v.speedX = -v.speedX
+    }
+    if (v.x > window.innerWidth - 80) {
+      v.x = window.innerWidth - 80
+      v.speedX = -v.speedX
+    }
+    if (v.y < 0) {
+      v.y = 0
+      v.speedY = -v.speedY
+    }
+    if (v.y > window.innerHeight - 80) {
+      v.y = window.innerHeight - 80
+      v.speedY = -v.speedY
+    }
+    v.corn.style.left = v.x + 'px'
+    v.corn.style.top = v.y + 'px'
+  })
+}, 30)*/
+
+
+function rand(m, n) {
+  return Math.round(Math.random() * (n - m) + m)
+}
+
+var corns = []
+
+document.onclick = document.onkeydown = function(e) {
+  var div = document.createElement('div')
+  div.innerHTML = '<img src="img/corn-gold.png" style="left: 100px; top: 100px; position: absolute;" alt="" />'
+  var img = div.children[0]
+  document.body.appendChild(img)
+  var x = e.clientX ? e.clientX - 40 : rand(0, window.innerWidth - 80)
+  var y = e.clientY ? e.clientY - 40 : rand(0, window.innerHeight - 80)
+  var speedX = 0
+  var speedY = 0
+  while (Math.abs(speedX) < 2) {
+    speedX = rand(-10, 10)
+  }
+  while (Math.abs(speedY) < 2) {
+    speedY = rand(-10, 10)
+  }
+  img.style.left = x + 'px'
+  img.style.top = y + 'px'
+  document.body.appendChild(img)
+  corns.push({
+    img: img,
+    x: x,
+    y: y,
+    speedX: speedX,
+    speedY: speedY,
+  })
+}
+
+setInterval(function() {
+  corns.forEach(function(corn) {
+    corn.speedY += 1
+    corn.x += corn.speedX
+    corn.y += corn.speedY
+    if (corn.x < 0) {
+      corn.speedX = -corn.speedX
+      corn.x = 0
+    }
+    if (corn.x > window.innerWidth - 80) {
+      corn.speedX = -corn.speedX
+      corn.x = window.innerWidth - 80
+    }
+    if (corn.y > window.innerHeight - 80) {
+      corn.speedY = -corn.speedY
+      corn.y = window.innerHeight - 80
+    }
+    corn.img.style.left = corn.x + 'px'
+    corn.img.style.top = corn.y + 'px'
+  })
+}, 30)
+
+/*var div = document.createElement('div')
+div.innerHTML = '<img src="img/corn-gold.png" style="left: 100px; top: 100px; position: absolute;" alt="" />'
+var img = div.children[0]
+document.body.appendChild(img)
+var y = 100
+var speedY = 1;
+
+setInterval(function(){
+  speedY += 1
+  y += speedY
+  if (y + 80 > window.innerHeight) {
+    speedY = -speedY
+  }
+  img.style.top = y + 'px'
+}, 30)*/
+
+</script>
+
+</body>
+</html>
